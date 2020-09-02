@@ -3,7 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder } from '@angular/forms';
 import { FormHelperService } from '../../app-services/form-helper.service';
 import { forkJoin } from 'rxjs';
-import { CommonReferenceBookService } from '../../app-services/common-reference-book.service';
 
 declare var Chart: any;
 
@@ -17,7 +16,6 @@ export class DashboardDetailComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
     private router: Router,
-    private commonReferenceBookService: CommonReferenceBookService,
     private activatedRoute: ActivatedRoute,
     private formHelperService: FormHelperService) { }
 

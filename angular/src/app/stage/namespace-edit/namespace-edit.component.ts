@@ -6,6 +6,7 @@ import { NamespaceService } from '../../app-services/namespace.service';
 import { interval, of } from 'rxjs';
 import { switchMap, takeWhile } from 'rxjs/operators';
 import moment from 'moment';
+import { StageService } from '../../app-services/stage.service';
 
 
 @Component({
@@ -19,20 +20,33 @@ export class NamespaceEditComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private namespaceService: NamespaceService,
+    private stageService: StageService,
     private formHelperService: FormHelperService) { }
 
   entityForm: FormGroup;
   entity: any;
   stageCode: string;
+  stageEndpoint: string;
   namespaceCode: string;
   waitingSince: any;
   waitingTranslate: any;
   waiting: boolean;
 
   ngOnInit() {
-    this.stageCode = this.activatedRoute.snapshot.params['stage'];
+    let stageCode = this.activatedRoute.snapshot.params['stage'];
     this.entity = {};
-    this.formOnInit();
+    this.stageService.list()
+    .subscribe(
+      (res: any) => {
+        let stage = res.find(c => c.code === stageCode);
+        this.stageCode = stage.code;
+        this.stageEndpoint = stage.endpoint;
+        this.formOnInit();
+      },
+      (err: any) => {
+        this.formHelperService.showError('Errors.GenericError', null);
+      }
+    );    
   }
 
   formOnInit() {
@@ -54,7 +68,7 @@ export class NamespaceEditComponent implements OnInit {
 
     if (this.entityForm.valid) {
       this.namespaceCode = this.entityForm.value.Namespace;
-      this.namespaceService.provision(this.stageCode, this.namespaceCode, this.entityForm.value)
+      this.namespaceService.provision(this.stageEndpoint, this.namespaceCode, this.entityForm.value)
       .subscribe(
         (res: any) => {
           this.formHelperService.showMessage('Messages.NamespaceProvisioningStartedSuccessfully', null);
@@ -81,7 +95,7 @@ export class NamespaceEditComponent implements OnInit {
     inter.subscribe((val) => {
       console.log("request #", val);
 
-      this.namespaceService.info(this.stageCode, this.namespaceCode)
+      this.namespaceService.info(this.stageEndpoint, this.namespaceCode)
       .subscribe(
         (res: any) => {
           if (res.Status && res.Status === 'ACTIVE') {

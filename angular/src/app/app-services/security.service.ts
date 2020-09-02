@@ -32,6 +32,6 @@ export class SecurityService {
   }
 
   requestIdentity(data: any): Observable<Identity> {
-    return this.http.post<Identity>(environment.api_dev + '/security', data);
+    return this.http.post<Identity>(environment.discoveryUrl + '/security', data);
   }
 }

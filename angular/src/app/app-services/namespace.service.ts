@@ -10,39 +10,35 @@ export class NamespaceService {
     private http: HttpClient
   ) {}
 
-  getEndpoint(stage: string, namespace: string) {
-    return environment['api_' + stage] + '/' + namespace;
+  registry(endpoint: string): Observable<{}> {
+    return this.http.get(endpoint + '/namespaces', {});    
   }
 
-  registry(stage: string): Observable<{}> {
-    return this.http.get(environment['api_' + stage] + '/registry', {});
+  info(endpoint: string, namespace: string): Observable<{}> {
+    return this.http.get(endpoint + '/' + namespace + '/info', {});
   }
 
-  info(stage: string, namespace: string): Observable<{}> {
-    return this.http.get(this.getEndpoint(stage, namespace) + '/info', {});
+  provision(endpoint: string, namespace: string, payload: any): Observable<{}> {
+    return this.http.put(endpoint + '/' + namespace + '/provision', payload, {});
   }
 
-  provision(stage: string, namespace: string, payload: any): Observable<{}> {
-    return this.http.put(this.getEndpoint(stage, namespace) + '/provision', payload, {});
+  usage(endpoint: string, namespace: string): Observable<{}> {
+    return this.http.get(endpoint + '/' + namespace + '/usage', {});
   }
 
-  usage(stage: string, namespace: string): Observable<{}> {
-    return this.http.get(this.getEndpoint(stage, namespace) + '/usage', {});
+  getSchemaResource(endpoint: string, namespace: string): Observable<{}> {
+    return this.http.get(endpoint + '/' + namespace + '/schema/Resource', {});
   }
 
-  getSchemaResource(stage: string, namespace: string): Observable<{}> {
-    return this.http.get(this.getEndpoint(stage, namespace) + '/schema/Resource', {});
+  getSchemaMetadata(endpoint: string, namespace: string): Observable<{}> {
+    return this.http.get(endpoint + '/' + namespace + '/schema/Metadata', {});
   }
 
-  getSchemaMetadata(stage: string, namespace: string): Observable<{}> {
-    return this.http.get(this.getEndpoint(stage, namespace) + '/schema/Metadata', {});
+  setSchemaResource(endpoint: string, namespace: string, schema: any): Observable<{}> {
+    return this.http.put(endpoint + '/' + namespace + '/schema/Resource', schema, {});
   }
 
-  setSchemaResource(stage: string, namespace: string, schema: any): Observable<{}> {
-    return this.http.put(this.getEndpoint(stage, namespace) + '/schema/Resource', schema, {});
-  }
-
-  setSchemaMetadata(stage: string, namespace: string, schema: any): Observable<{}> {
-    return this.http.put(this.getEndpoint(stage, namespace) + '/schema/Metadata', schema, {});
+  setSchemaMetadata(endpoint: string, namespace: string, schema: any): Observable<{}> {
+    return this.http.put(endpoint + '/' + namespace + '/schema/Metadata', schema, {});
   }
 }

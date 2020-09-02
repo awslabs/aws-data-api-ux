@@ -5,7 +5,5 @@
 
 export const environment = {
   production: false,
-  api_dev:  'https://dm8906f6ae.execute-api.eu-west-1.amazonaws.com/dev',
-  api_test: 'https://txcoxv32dh.execute-api.eu-west-1.amazonaws.com/test',
-  api_prod: 'https://xxxxxxxxxx.execute-api.eu-west-1.amazonaws.com'
-};
+  discoveryUrl:  'https://xxxxxxxxx.execute-api.xx-xxxx-x.amazonaws.com/xxxx/data-apis'
+}

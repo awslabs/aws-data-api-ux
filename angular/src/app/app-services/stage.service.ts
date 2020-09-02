@@ -1,21 +1,47 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
+import { map, publishReplay, refCount } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
-import { of } from 'rxjs';
 
-@Injectable()
+export interface Stage {
+    name: string, 
+    code: string,
+    endpoint: string
+}
+
+@Injectable({
+    providedIn: 'root'
+})
 export class StageService {
 
-  constructor() {}
+    configs: Observable<Stage[]>;
 
-  list(): Observable<{}> {
-    const data = of([
-      { name: 'Dev',  code: 'dev',  endpoint: environment.api_dev  },
-      { name: 'Test', code: 'test', endpoint: environment.api_test  },
-      { name: 'Prod', code: 'prod', endpoint: environment.api_prod  }
-    ]);
+    constructor(private httpClient: HttpClient) { }
 
-    return data;
-  }
+    // Get configs from server | HTTP GET
+    list(): Observable<Stage[]> {
+
+        // Cache it once if configs value is false
+        if (!this.configs) {
+            this.configs = this.httpClient.get(environment.discoveryUrl).pipe(
+                map(data => {
+                  let result = [];
+                  for (let key in data) {
+                    result.push({ name: key,  code: key,  endpoint: data[key] });
+                   }
+                  return result;
+                }),
+                publishReplay(1), // this tells Rx to cache the latest emitted
+                refCount() // and this tells Rx to keep the Observable alive as long as there are any Subscribers
+            );
+        }
+
+        return this.configs;
+    }
+
+    // Clear configs
+    clearCache() {
+        this.configs = null;
+    }
 }

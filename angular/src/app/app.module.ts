@@ -11,7 +11,6 @@ import { SecurityModule } from './security/security.module';
 import { SharedModule } from './shared/shared.module';
 import { FormHelperService } from './app-services/form-helper.service';
 import { DashboardModule } from './dashboard/dashboard.module';
-import { CommonReferenceBookService } from './app-services/common-reference-book.service';
 import { StageService } from './app-services/stage.service';
 import { StageModule } from './stage/stage.module';
 import { ResourceService } from './app-services/resource.service';
@@ -35,10 +34,9 @@ import { NamespaceService } from './app-services/namespace.service';
   ],
   providers: [
     SecurityGuard,
+    StageService,
     SecurityService,
     FormHelperService,
-    CommonReferenceBookService,
-    StageService,
     ResourceService,
     NamespaceService,
     // {

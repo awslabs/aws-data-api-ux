@@ -3,6 +3,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { FormHelperService } from '../../app-services/form-helper.service';
 import { NamespaceService } from '../../app-services/namespace.service';
 import { JsonEditorOptions } from 'ang-jsoneditor';
+import { StageService } from '../../app-services/stage.service';
 
 @Component({
   selector: 'app-namespace-details',
@@ -15,6 +16,7 @@ export class NamespaceDetailsComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private namespaceService: NamespaceService,
+    private stageService: StageService,
     private formHelperService: FormHelperService) { }
 
   entityInfo: any;
@@ -25,33 +27,44 @@ export class NamespaceDetailsComponent implements OnInit {
   schemaMetadataOptions: any;
   console = console;
   stageCode: string;
+  stageEndpoint: string;
   namespaceCode: string;
 
   ngOnInit() {
-    this.stageCode = this.activatedRoute.snapshot.params['stage'];
     this.namespaceCode = this.activatedRoute.snapshot.params['namespace'];
-    this.getEntityInfo();
-    this.getEntityUsage();
-
-    let options = new JsonEditorOptions();
-    options.modes = ['code']
-    options.mode = 'code';
-    options.enableTransform = false;
-    options.enableSort = false;
-    options.search = false;
-    options.mainMenuBar = false;
-
-    this.schemaResourceOptions = options;
-    this.schemaMetadataOptions = options;
-
-    console.log('options', this.schemaResourceOptions);
-
-    this.getSchemaResource();
-    this.getSchemaMetadata();
+    let stageCode = this.activatedRoute.snapshot.params['stage'];
+    this.stageService.list().subscribe(
+      (res: any) => {
+        let stage = res.find(c => c.code === stageCode);
+        this.stageCode = stage.code;
+        this.stageEndpoint = stage.endpoint;
+        this.getEntityInfo();
+        this.getEntityUsage();
+    
+        let options = new JsonEditorOptions();
+        options.modes = ['code']
+        options.mode = 'code';
+        options.enableTransform = false;
+        options.enableSort = false;
+        options.search = false;
+        options.mainMenuBar = false;
+    
+        this.schemaResourceOptions = options;
+        this.schemaMetadataOptions = options;
+    
+        console.log('options', this.schemaResourceOptions);
+    
+        this.getSchemaResource();
+        this.getSchemaMetadata();
+      },
+      (err: any) => {
+        this.formHelperService.showError('Errors.GenericError', null);
+      }
+    );    
   }
 
   getEntityInfo() {
-    this.namespaceService.info(this.stageCode, this.namespaceCode)
+    this.namespaceService.info(this.stageEndpoint, this.namespaceCode)
     .subscribe(
       (res: any) => {
         this.entityInfo = res;
@@ -64,7 +77,7 @@ export class NamespaceDetailsComponent implements OnInit {
   }
 
   getEntityUsage() {
-    this.namespaceService.usage(this.stageCode, this.namespaceCode)
+    this.namespaceService.usage(this.stageEndpoint, this.namespaceCode)
     .subscribe(
       (res: any) => {
         this.entityUsage = res;
@@ -77,7 +90,7 @@ export class NamespaceDetailsComponent implements OnInit {
   }
 
   getSchemaResource() {
-    this.namespaceService.getSchemaResource(this.stageCode, this.namespaceCode)
+    this.namespaceService.getSchemaResource(this.stageEndpoint, this.namespaceCode)
     .subscribe(
       (res: any) => {
         this.schemaResource = res;
@@ -90,7 +103,7 @@ export class NamespaceDetailsComponent implements OnInit {
   }
 
   getSchemaMetadata() {
-    this.namespaceService.getSchemaMetadata(this.stageCode, this.namespaceCode)
+    this.namespaceService.getSchemaMetadata(this.stageEndpoint, this.namespaceCode)
     .subscribe(
       (res: any) => {
         this.schemaMetadata = res;
@@ -115,7 +128,7 @@ export class NamespaceDetailsComponent implements OnInit {
   }
 
   setSchemaResource(schema: any) {
-    this.namespaceService.setSchemaResource(this.stageCode, this.namespaceCode, schema)
+    this.namespaceService.setSchemaResource(this.stageEndpoint, this.namespaceCode, schema)
     .subscribe(
       (res: any) => {
         this.schemaResource = schema;
@@ -128,7 +141,7 @@ export class NamespaceDetailsComponent implements OnInit {
   }
 
   setSchemaMetadata(schema: any) {
-    this.namespaceService.setSchemaMetadata(this.stageCode, this.namespaceCode, schema)
+    this.namespaceService.setSchemaMetadata(this.stageEndpoint, this.namespaceCode, schema)
     .subscribe(
       (res: any) => {
         this.schemaMetadata = schema;

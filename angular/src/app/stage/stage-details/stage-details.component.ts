@@ -34,7 +34,7 @@ export class StageDetailsComponent implements OnInit {
       (res: any) => {
         this.stage = res.find(c => c.code === stageCode);
         console.log(this.stage);
-        this.searchEntities(this.stage.code)
+        this.searchEntities(this.stage.endpoint)
       },
       (err: any) => {
         this.formHelperService.showError('Errors.GenericError', null);
@@ -42,8 +42,8 @@ export class StageDetailsComponent implements OnInit {
     );
   }
 
-  searchEntities(stageCode: string) {
-    this.namespaceService.registry(stageCode)
+  searchEntities(endpoint: string) {
+    this.namespaceService.registry(endpoint)
     .subscribe(
       (res: any) => {
         this.entities = res;
