@@ -1,0 +1,103 @@
+{
+    "Users": {
+        "TitleList": "Users",
+        "TitleOne": "User",
+        "TitleDetails": "User Details",
+        "NewUser": "New User",
+        "ViewProfile": "View profile",
+        "Username": "Username",
+        "FirstName": "First Name",
+        "LastName": "Last Name",
+        "ActionPasswordSet": "Set Password",
+        "Password": "Password",
+        "PasswordConfirmation": "Confirm Password"
+    },
+    "Stages": {
+        "TitleList": "Stages",
+        "TitleDetails": "Stage Details",
+        "ActionAdd": "Add stage",
+        "ActionView": "View stage",
+        "Name": "Stage Name",
+        "Endpoint": "Endpoint"
+    },
+    "Namespaces": {
+        "TitleList": "Namespaces",
+        "TitleOne": "Namespace",
+        "TitleDetails": "Namespace Details",
+        "TitleAdd": "Add New Namespace",
+        "ActionAdd": "Add namespace",
+        "ActionView": "View namespace",
+        "Name": "Namespace Name",
+        "PrimaryKey": "Primary Key",
+        "InternalInformation": "Internal Information",
+        "UsageInformation": "Usage Information",
+        "AdditionalProperties": "Additional properties are allowed",
+        "NoAdditionalProperties": "No additional properties allowed",
+        "DynamoDBResourceTable": "DynamoDB Resource Table",
+        "DynamoDBMetadataTable": "DynamoDB Metadata Table",
+        "ElasticsearchDomain": "Elasticsearch Domain",
+        "NeptuneDatabase": "Neptune Database",
+        "ActionEditSchema": "Edit Schema"
+    },
+    "Resources": {
+        "TitleList": "Resources",
+        "TitleDetails": "Resource Details",
+        "ActionAdd": "Add resource",
+        "ActionView": "View resource",
+        "ActionExplore": "Explore Resources",
+        "Name": "Resources Name",
+        "ResourceCount": "Number of Resources",
+        "ResourceSizeBytes": "Resources Size",
+        "MetadataCount": "Number of Metadata Objects",
+        "MetadataSizeBytes": "Metadata Size",
+        "SchemaResource": "Resource Schema",
+        "SchemaMetadata": "Metadata Schema",
+        "FieldName": "Field Name",
+        "FieldDescription": "Description",
+        "FieldDataType": "Data Type",
+        "FieldIsRequired": "Is Required"
+    },
+    "Security": {
+        "SignIn": "Sign In",
+        "SignUp": "Sign Up"
+    },
+    "Shared": {
+        "NotAvailable": "n/a",
+        "Undefined": "Undefined",
+        "Auditor": "Auditor",
+        "Email": "Email",
+        "Password": "Password",
+        "Save": "Save",
+        "Submit": "Submit",
+        "Edit": "Edit",
+        "Cancel": "Cancel",
+        "General": "General",
+        "GeneralDetails": "General details",
+        "Name": "Name",
+        "Description": "Description",
+        "Yes": "Yes",
+        "No": "No",
+        "Created": "Created",
+        "Updated": "Updated",
+        "Status": "Status"
+    },
+    "Errors": {
+        "EmailOrPasswordIsInvalid": "Email or password is invalid",
+        "EmailIsInvalid": "Email is invalid",
+        "FieldIsInvalid": "Field is invalid, please use alphanumeric characters and underscores",
+        "FieldIsRequired": "Field is required",
+        "ValueIsTooShort": "Provided value is too short",
+        "ValueIsNotNumber": "Provided value should be a number",
+        "GenericError": "Sorry, an error occurred while processing your request",
+        "PasswordsMustMatch": "Passwords must match"
+    },
+    "Messages": {
+        "SavedSuccessfully": "Data is saved successfully",
+        "DocumentSavedSuccessfully": "Document is saved successfully",
+        "SchemaResourceSavedSuccessfully": "Resource schema has been saved successfully!",
+        "SchemaMetadataSavedSuccessfully": "Metadata schema has been saved successfully!",
+        "NamespaceProvisioningStartedSuccessfully": "Namespace provisioning has started successfully!",
+        "NamespaceProvisionedSuccessfully": "Namespace has been provisioned successfully!",
+        "NamespaceProvisioningInProgress": "Namespace provisioning has been started {{when}}. It can take up to 5-10 minutes to complete."
+    }
+}

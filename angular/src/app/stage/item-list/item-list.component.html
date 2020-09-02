@@ -1,0 +1,50 @@
+<div [formGroup]="formGroup">
+    <h2><i class="fas fa-cubes"></i> {{ 'Resources.TitleList' | translate }}</h2>
+    <div class="uk-margin" (ngSubmit)="searchFormSubmit($event)" [formGroup]="formGroup">
+        <div class="uk-inline uk-width-1-1">
+            <a class="uk-form-icon uk-form-icon-flip" (click)="searchFormSubmit($event)" href="javascript:void(0);">
+                <i class="fas fa-arrow-right fa-2x fa-fw"></i>
+            </a>
+            <input class="uk-input uk-form-large uk-width-1-2" formControlName="queryResource"
+                (keydown.enter)="searchFormSubmit($event)" type="text" placeholder="Resource Query">
+            <input class="uk-input uk-form-large uk-width-1-2" formControlName="queryMetadata"
+                (keydown.enter)="searchFormSubmit($event)" type="text" placeholder="Metadata Query">
+        </div>
+    </div>
+
+
+    <ul class="uk-pagination uk-flex-right uk-margin-medium-top" uk-margin>
+        <li><a href="javascript:void(0);" (click)="goPrev()"><span uk-pagination-previous></span></a></li>
+        <li>Page {{ search.page }}</li>
+        <!-- <li *ngFor="let dummy of ' '.repeat(search.pageCount).split(''), let pageNumber = index"
+            [ngClass]="{'uk-active': (search.criteria.page == pageNumber)}">
+            <a href="javascript:void(0);" (click)="goPage(pageNumber)">{{pageNumber + 1}}</a>
+        </li> -->
+        <li><a href="javascript:void(0);" (click)="goNext()"><span uk-pagination-next></span></a></li>
+    </ul>
+
+    <div class="uk-card uk-card-default uk-card-small uk-card-hover uk-margin">
+        <div class="uk-card-body">
+            <div class="uk-overflow-auto">
+                <table class="uk-table uk-table-small uk-table-responsive uk-table-hover uk-table-divider"
+                    *ngIf="entityHeaders && entityHeaders.length">
+                    <thead>
+                        <tr>
+                            <th class="text-no-transform" *ngFor="let entityHeader of entityHeaders">
+                                {{ entityHeader }}
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let entity of entities">
+                            <td class="uk-text-nowrap uk-text-small" *ngFor="let entityHeader of entityHeaders">
+                                <span class="uk-text-bolder uk-hidden@m">{{ entityHeader }}:</span>
+                                {{ entity[entityHeader] }}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

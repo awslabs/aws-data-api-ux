@@ -1,0 +1,91 @@
+/* You can add global styles to this file, and also import other style files */
+@import "./styles-variables.scss";
+@import "../node_modules/uikit/src/scss/variables-theme.scss";
+@import "../node_modules/uikit/src/scss/mixins-theme.scss";
+@import "../node_modules/uikit/src/scss/uikit-theme.scss";
+@import "../node_modules/@fortawesome/fontawesome-free/css/all.css";
+@import "../node_modules/@ng-select/ng-select/themes/default.theme.css";
+@import "../node_modules/colors.css/css/colors.css";
+@import "../node_modules/jsoneditor/dist/jsoneditor.min.css";
+
+.da-label {
+    display: inline-block;
+    padding: $label-padding-vertical $label-padding-horizontal;
+    line-height: $label-line-height;
+    font-size: $label-font-size;
+    color: $label-color;
+    vertical-align: middle;
+    white-space: nowrap;
+    @if(mixin-exists(hook-label)) {@include hook-label();}
+}
+
+.ace_editor.ace-jsoneditor {
+    min-height: 404px;
+}  
+
+.readonly-control {
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 0;
+    padding: 8px 10px;
+    border-color: $global-border;
+    //height: $form-height;
+    color: $form-color;
+    box-sizing: border-box;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.uk-table th.text-no-transform,
+.text-no-transform {
+  text-transform: none;
+}
+
+ng-select.ng-select.ng-select-single .ng-select-container,
+ng-select.ng-select .ng-select-container {
+    border-radius: 0;
+    border-color: $global-border;
+    height: $form-height;
+    color: $form-color;
+}
+
+ng-select.ng-select.ng-invalid.ng-touched .ng-select-container {
+	@extend .uk-form-danger;
+}
+
+.mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
+    line-height: 38px !important;
+}
+
+.mat-button-toggle-group-appearance-standard.ng-invalid.ng-touched, 
+.mat-button-toggle-standalone.mat-button-toggle-appearance-standard.ng-invalid.ng-touched {
+    @extend .uk-form-danger;
+}
+
+.dropdown-menu {
+    @extend .uk-dropdown,.uk-list;
+    display: none;
+}
+
+@mixin avatar($size) {
+    width: $size;
+    height: $size;
+    // background-color: $brand-special;
+    text-align: center;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+  
+    .initials {
+      position: relative;
+      top: $size*0.25;
+      font-size: $size*0.5;
+      line-height: $size*0.5;
+      color: #fff;
+      font-weight: bold;
+    }
+  }
+  
+  .avatar-circle      { @include avatar(60px); }
+  .avatar-circle-sm   { @include avatar(40px); }
+  .avatar-circle-lg   { @include avatar(160px); }

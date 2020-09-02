@@ -1,0 +1,77 @@
+<form *ngIf="entityForm && !waitingSince" (ngSubmit)="formOnSubmit($event)" [formGroup]="entityForm">
+    <h2>
+        <i class="fas fa-tasks"></i> {{ 'Namespaces.TitleAdd' | translate }}
+    </h2>
+  
+    <div class="uk-card uk-card-default uk-card-small uk-card-hover uk-margin">
+        <div class="uk-card-body">
+          <div class="uk-grid-small" uk-grid>
+            <div class="uk-width-1-2@s">
+                <label class="uk-form-label" for="form-stacked-text">{{ 'Namespaces.Name' | translate }}</label>
+                <div class="uk-form-controls">
+                    <input class="uk-input" type="text" formControlName="Namespace"
+                        [ngClass]="{'uk-form-danger': (entityForm.controls.Namespace.invalid && entityForm.controls.Namespace.touched)}"/>
+                    <div class="uk-text-small uk-text-danger" *ngIf="entityForm.controls.Namespace.touched && entityForm.controls.Namespace.errors && entityForm.controls.Namespace.errors.pattern">{{ 'Errors.FieldIsInvalid' | translate }}</div>
+                    <div class="uk-text-small uk-text-danger" *ngIf="entityForm.controls.Namespace.touched && entityForm.controls.Namespace.errors && entityForm.controls.Namespace.errors.required">{{ 'Errors.FieldIsRequired' | translate }}</div>
+                </div>
+            </div>
+          <div class="uk-width-1-2@s">
+            <label class="uk-form-label" for="form-stacked-text">{{ 'Namespaces.PrimaryKey' | translate }}</label>
+            <div class="uk-form-controls">
+                <input class="uk-input" type="text" formControlName="PrimaryKey"
+                    [ngClass]="{'uk-form-danger': (entityForm.controls.PrimaryKey.invalid && entityForm.controls.PrimaryKey.touched)}"/>
+                <div class="uk-text-small uk-text-danger" *ngIf="entityForm.controls.PrimaryKey.touched && entityForm.controls.PrimaryKey.errors && entityForm.controls.PrimaryKey.errors.pattern">{{ 'Errors.FieldIsInvalid' | translate }}</div>
+                <div class="uk-text-small uk-text-danger" *ngIf="entityForm.controls.PrimaryKey.touched && entityForm.controls.PrimaryKey.errors && entityForm.controls.PrimaryKey.errors.required">{{ 'Errors.FieldIsRequired' | translate }}</div>
+            </div>
+        </div>
+          <div class="uk-width-1-1 uk-text-right">
+            <button class="uk-button uk-button-primary" type="submit">{{ 'Shared.Submit' | translate }}</button>&nbsp;
+            <a routerLink="/stages/{{ stageCode }}" class="uk-button uk-button-default">{{ 'Shared.Cancel' | translate }}</a>   
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  
+
+  <div *ngIf="waiting" class="uk-card uk-card-default uk-card-small uk-card-hover uk-margin">
+    <div class="uk-card-body">
+        <div class="gearbox-container">
+            <div class="gearbox">
+            <div class="overlay"></div>
+              <div class="gear one">
+                <div class="gear-inner">
+                  <div class="bar"></div>
+                  <div class="bar"></div>
+                  <div class="bar"></div>
+                </div>
+              </div>
+              <div class="gear two">
+                <div class="gear-inner">
+                  <div class="bar"></div>
+                  <div class="bar"></div>
+                  <div class="bar"></div>
+                </div>
+              </div>
+              <div class="gear three">
+                <div class="gear-inner">
+                  <div class="bar"></div>
+                  <div class="bar"></div>
+                  <div class="bar"></div>
+                </div>
+              </div>
+              <div class="gear four large">
+                <div class="gear-inner">
+                  <div class="bar"></div>
+                  <div class="bar"></div>
+                  <div class="bar"></div>
+                  <div class="bar"></div>
+                  <div class="bar"></div>
+                  <div class="bar"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="uk-text-center uk-text-primary uk-margin-top uk-margin-bottom">{{ 'Messages.NamespaceProvisioningInProgress' | translate:waitingTranslate }}</div>
+        </div>
+        </div>

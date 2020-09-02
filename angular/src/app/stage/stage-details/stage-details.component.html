@@ -1,0 +1,40 @@
+<div>
+    <h2>
+        <i class="fas fa-tasks"></i> {{ 'Stages.TitleDetails' | translate }}
+    </h2>
+    <div class="uk-grid-small uk-child-width-1-1" uk-grid>
+        <div>
+            <div class="uk-card uk-card-default uk-card-small uk-card-hover">
+                <div class="uk-card-body">
+                    <div uk-grid>
+                        <div class="uk-width-expand@m">
+                            <h4 class="uk-margin-remove-bottom">{{ stage.name }}</h4>
+                            <small>{{ stage.endpoint }}</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="uk-card uk-card-default uk-card-small uk-card-hover">
+                <div class="uk-card-header">
+                    <h3>{{ 'Namespaces.TitleList' | translate }}</h3>
+                </div>
+                <div class="uk-card-body">
+                    <div uk-grid class="uk-grid-small" uk-height-match="target: .uk-card-body">
+                        <div *ngFor="let entity of entities">
+                            <div class="uk-card uk-card-secondary uk-card-small uk-card-hover uk-card-body text-no-transform" [attr.uk-tooltip]="'Namespaces.ActionView' | translate">
+                                <a routerLink="/stages/{{ stage.code }}/{{ entity }}" class="uk-button uk-button-text text-no-transform">{{ entity }}</a>     
+                            </div>
+                        </div>
+                        <div>
+                            <div class="uk-card uk-card-default uk-card-small uk-card-hover uk-card-body" [attr.uk-tooltip]="'Namespaces.ActionAdd' | translate">
+                                <a routerLink="/stages/{{ stage.code }}/new" class="uk-button uk-button-text">{{ 'Namespaces.ActionAdd'  | translate }}</a>    
+                            </div>
+                          </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

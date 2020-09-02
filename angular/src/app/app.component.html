@@ -1,0 +1,123 @@
+<div *ngIf="!isNaked">
+  <!--HEADER-->
+  <header id="top-head" class="uk-position-fixed">
+        <div class="uk-container uk-container-expand uk-background-primary">
+            <nav class="uk-navbar uk-light" data-uk-navbar="mode:click">
+                <div class="uk-navbar-left">
+                    <a class="uk-navbar-item uk-logo" href="#">
+                        <img width="40" src="/assets/images/logo-w.png" [attr.uk-tooltip]="'title: AWS Data API; pos: right'" />
+                    </a>
+                    <button class="hamburger hamburger--collapse"  
+                        type="button"
+                        [class.is-active]="isMenuOpened"
+                        (click)="drawer.toggle()">
+                        <span class="hamburger-box">
+                            <span class="hamburger-inner"></span>
+                        </span>
+                    </button>
+                </div>
+                <div class="uk-navbar-right">
+                    <div class="uk-navbar-item uk-visible@m">
+                        <div><i class="far fa-bell fa-lg"></i></div>
+                    </div>
+                    <ul class="uk-navbar-nav">
+                        <li>
+                            <a class="uk-text-capitalize" href="#">admin @ 102030405060&nbsp;<i class="fas fa-angle-down"></i></a>
+                            <div class="uk-navbar-dropdown">
+                                <ul class="uk-nav uk-navbar-dropdown-nav">
+                                    <li>
+                                        <span>Account:</span><br/>
+                                        <span>102030405060</span>
+                                    </li>
+                                    <li class="uk-nav-divider"></li>
+                                    <li><a href="#">My Account</a></li>
+                                    <li><a href="#">My Organization</a></li>
+                                    <li><a href="#">My Service Quatas</a></li>
+                                    <li><a href="#">My Billing Dashboard</a></li>
+                                    <li><a href="#">Orders and Invoices</a></li>
+                                    <li><a href="#">Switch Role</a></li>
+                                    <li class="uk-nav-divider"></li>
+                                    <li><a href="#">Sign Out</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li>
+                            <a class="uk-text-capitalize" href="#">Ireland&nbsp;<i class="fas fa-angle-down"></i></a>
+                            <div class="uk-navbar-dropdown">
+                                <ul class="uk-nav uk-navbar-dropdown-nav">
+                                    <li><a class="uk-text-nowrap" href="#"><b>Europe (Ireland)</b>&nbsp;<small>eu-west-1</small></a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="uk-visible@m">
+                            <a class="uk-text-capitalize" href="#">Support&nbsp;<i class="fas fa-angle-down"></i></a>
+                            <div class="uk-navbar-dropdown">
+                                <ul class="uk-nav uk-navbar-dropdown-nav">
+                                    <li><a href="#">Support Center</a></li>
+                                    <li><a href="#">Forums</a></li>
+                                    <li><a href="#">Documentation</a></li>
+                                    <li><a href="#">Training</a></li>
+                                    <li><a href="#">Other Resources</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+</div>
+    <!--/HEADER-->
+ <mat-drawer-container autosize>
+    <mat-drawer #drawer 
+        (openedStart)="isMenuOpened=true"
+        (closedStart)="isMenuOpened=false"
+        [mode]="mobileQuery.matches ? 'over' : 'side'"
+        [opened]="(isNaked || mobileQuery.matches) ? 'false' : 'true'">
+        <div>
+            <div class="bar-content uk-position-relative">
+                <ul class="uk-nav-default uk-nav-parent-icon" data-uk-nav>
+                    <li>
+                        <h3>Data API</h3>
+                    </li>
+                    <li class="uk-nav-divider"></li>
+                    <li class="uk-nav-header">Console</li>
+                    <li [ngClass]="{'uk-active': isActivePath('/dashboard')}">
+                        <a routerLink="/dashboard"><i class="fas fa-tachometer-alt fa-fw"></i> Dashboard</a>
+                    </li>
+                    <li [ngClass]="{'uk-active': isActivePath('/tasks')}">
+                        <a routerLink="/stages"><i class="fas fa-tasks fa-fw"></i> {{ 'Stages.TitleList' | translate }}</a>
+                    </li>
+                    <li [ngClass]="{'uk-active': isActivePath('/aws-marketplace')}">
+                        <a routerLink="/aws-marketplace"><i class="fas fa-shopping-cart fa-fw"></i> {{ 'AWS Marketplace' || 'Documents.TitleList' | translate }}</a>
+                    </li>
+                    <li class="uk-nav-divider"></li>
+                    <li class="uk-nav-header">Administration</li>
+                    <li [ngClass]="{'uk-active': isActivePath('/alarms')}">
+                        <a routerLink="/alarms"><i class="far fa-bell fa-fw"></i> {{ 'Alarms' || 'UserGroups.TitleList' | translate }}</a>
+                    </li>
+                    <li [ngClass]="{'uk-active': isActivePath('/events')}">
+                        <a routerLink="/events"><i class="fas fa-clipboard-list fa-fw"></i> {{ 'Events' || 'QTemplates.TitleList' | translate }}</a>
+                    </li>
+                    <li [ngClass]="{'uk-active': isActivePath('/what-is-new')}">
+                        <a routerLink="/what-is-new"><i class="far fa-newspaper fa-fw"></i> {{ 'What\'s new' || 'Users.TitleList' | translate }}</a>
+                    </li>          
+                </ul>
+            </div>
+        </div>
+    </mat-drawer>
+    
+        
+
+    <div id="content" [ngClass]="{'content-console': !isNaked}" data-uk-height-viewport="expand: true">
+        <div [ngClass]="{'uk-container uk-container-expand': !isNaked}">
+            <router-outlet></router-outlet>
+            <footer class="uk-section uk-section-small uk-text-center" *ngIf="!isNaked">
+                <hr>
+                <img width="32" src="/assets/images/logo.png" [attr.uk-tooltip]="'title: AWS Data API; pos: right'" />
+            </footer>
+        </div>
+    </div>
+
+</mat-drawer-container>
