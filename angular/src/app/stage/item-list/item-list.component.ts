@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { FormHelperService } from '../../app-services/form-helper.service';
 import { ResourceService } from '../../app-services/resource.service';
+import { StageService } from 'app/app-services/stage.service';
 
 @Component({
   selector: 'app-item-list',
@@ -15,6 +16,7 @@ export class ItemListComponent implements OnInit {
     private router: Router,
     private resourceService: ResourceService,
     private activatedRoute: ActivatedRoute,
+    private stageService: StageService,
     private formHelperService: FormHelperService) { }
 
   formGroup: FormGroup;
@@ -24,27 +26,39 @@ export class ItemListComponent implements OnInit {
   console = console;
 
   stageCode: string;
+  stageEndpoint: string;
   namespaceCode: string;
 
   ngOnInit() {
-    this.stageCode = this.activatedRoute.snapshot.params['stage'];
+    let stageCode = this.activatedRoute.snapshot.params['stage'];
     this.namespaceCode = this.activatedRoute.snapshot.params['namespace'];
 
-    this.search = {
-      page: 1,
-      pageSize: 10,
-      queryMetadata: '',
-      queryResource: '',
-      lastTokenStack: ['0']
-    };
+    this.stageService.list()
+    .subscribe(
+      (res: any) => {
+        let stage = res.find(c => c.code === stageCode);
+        this.stageCode = stage.code;
+        this.stageEndpoint = stage.endpoint;
 
-    this.formGroup = this.fb.group({
-      queryMetadata: new FormControl(this.search.queryMetadata),
-      queryResource: new FormControl(this.search.queryResource)
-    });
-
-    this.searchEntities();
-
+        this.search = {
+          page: 1,
+          pageSize: 10,
+          queryMetadata: '',
+          queryResource: '',
+          lastTokenStack: ['0']
+        };
+    
+        this.formGroup = this.fb.group({
+          queryMetadata: new FormControl(this.search.queryMetadata),
+          queryResource: new FormControl(this.search.queryResource)
+        });
+    
+        this.searchEntities();
+      },
+      (err: any) => {
+        this.formHelperService.showError('Errors.GenericError', null);
+      }
+    ); 
   }
   
   goPrev() {
@@ -97,7 +111,7 @@ export class ItemListComponent implements OnInit {
         query.Metadata = JSON.parse(this.search.queryMetadata);
       }
 
-      this.resourceService.find(this.stageCode, this.namespaceCode, lastToken, this.search.pageSize, query)
+      this.resourceService.find(this.stageEndpoint, this.namespaceCode, lastToken, this.search.pageSize, query)
       .subscribe(
         (res: any) => {
           this.search.pageCount = res.pageCount;
@@ -114,7 +128,7 @@ export class ItemListComponent implements OnInit {
         }
       );
     } else {
-      this.resourceService.list(this.stageCode, this.namespaceCode, lastToken, this.search.pageSize)
+      this.resourceService.list(this.stageEndpoint, this.namespaceCode, lastToken, this.search.pageSize)
       .subscribe(
         (res: any) => {
           this.search.pageCount = res.pageCount;

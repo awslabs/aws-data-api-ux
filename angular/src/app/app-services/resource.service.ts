@@ -16,7 +16,7 @@ export class ResourceService {
       search.ExclusiveStartKey = last_token;
     }
     
-    return this.http.post(endpoint + '/' + namespace +  + '/find', search, {});
+    return this.http.post(endpoint + '/' + namespace + '/find', search, {});
   }
 
   list(endpoint: string, namespace: string, last_token: string = '0', page_size: number = 10): Observable<{}> {
@@ -26,6 +26,6 @@ export class ResourceService {
       params = params.set("LastEvaluatedKey",last_token);
     }
 
-    return this.http.get(endpoint + '/' + namespace + + '/list', { params: params });
+    return this.http.get(endpoint + '/' + namespace + '/list', { params: params });
   }
 }
