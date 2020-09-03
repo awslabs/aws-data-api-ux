@@ -28,7 +28,7 @@ export class StageService {
                 map(data => {
                   let result = [];
                   for (let key in data) {
-                    result.push({ name: key,  code: key,  endpoint: data[key] });
+                    result.push({ name: key,  code: key,  endpoint: data[key].URL ?? data[key].Endpoint });
                    }
                   return result;
                 }),
