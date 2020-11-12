@@ -22,7 +22,7 @@ import { NamespaceService } from './app-services/namespace.service';
     AppComponent
   ],
   imports: [
-    RouterModule.forRoot([]),
+    RouterModule.forRoot([], { relativeLinkResolution: 'legacy' }),
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
