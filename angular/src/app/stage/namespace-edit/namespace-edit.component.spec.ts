@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { NamespaceEditComponent } from './namespace-edit.component';
 
@@ -6,7 +6,7 @@ describe('NamespaceEditComponent', () => {
   let component: NamespaceEditComponent;
   let fixture: ComponentFixture<NamespaceEditComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ NamespaceEditComponent ]
     })
