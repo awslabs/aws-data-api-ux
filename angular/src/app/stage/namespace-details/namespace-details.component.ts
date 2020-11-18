@@ -52,8 +52,6 @@ export class NamespaceDetailsComponent implements OnInit {
         this.schemaResourceOptions = options;
         this.schemaMetadataOptions = options;
     
-        console.log('options', this.schemaResourceOptions);
-    
         this.getSchemaResource();
         this.getSchemaMetadata();
       },
@@ -68,7 +66,6 @@ export class NamespaceDetailsComponent implements OnInit {
     .subscribe(
       (res: any) => {
         this.entityInfo = res;
-        console.log(this.entityInfo);
       },
       (err: any) => {
         this.formHelperService.showError('Errors.GenericError', null);
@@ -81,7 +78,6 @@ export class NamespaceDetailsComponent implements OnInit {
     .subscribe(
       (res: any) => {
         this.entityUsage = res;
-        console.log(this.entityUsage);
       },
       (err: any) => {
         this.formHelperService.showError('Errors.GenericError', null);
@@ -94,7 +90,6 @@ export class NamespaceDetailsComponent implements OnInit {
     .subscribe(
       (res: any) => {
         this.schemaResource = res;
-        console.log(this.schemaResource);
       },
       (err: any) => {
         this.formHelperService.showError('Errors.GenericError', null);
@@ -107,7 +102,6 @@ export class NamespaceDetailsComponent implements OnInit {
     .subscribe(
       (res: any) => {
         this.schemaMetadata = res;
-        console.log(this.schemaMetadata);
       },
       (err: any) => {
         this.formHelperService.showError('Errors.GenericError', null);

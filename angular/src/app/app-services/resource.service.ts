@@ -21,7 +21,6 @@ export class ResourceService {
 
   list(endpoint: string, namespace: string, last_token: string = '0', page_size: number = 10): Observable<{}> {
     let params = new HttpParams().set("limit", page_size.toString());
-    console.log('last-token', last_token);
     if(last_token !== '0') {
       params = params.set("LastEvaluatedKey",last_token);
     }

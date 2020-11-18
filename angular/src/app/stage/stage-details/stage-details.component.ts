@@ -33,7 +33,6 @@ export class StageDetailsComponent implements OnInit {
     .subscribe(
       (res: any) => {
         this.stage = res.find(c => c.code === stageCode);
-        console.log(this.stage);
         this.searchEntities(this.stage.endpoint)
       },
       (err: any) => {
@@ -47,7 +46,6 @@ export class StageDetailsComponent implements OnInit {
     .subscribe(
       (res: any) => {
         this.entities = res;
-        console.log(res);
       },
       (err: any) => {
         this.formHelperService.showError('Errors.GenericError', null);

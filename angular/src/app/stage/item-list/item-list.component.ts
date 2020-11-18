@@ -120,7 +120,6 @@ export class ItemListComponent implements OnInit {
           }
           this.entities = res.Items;
           this.processItems(this.entities);
-          console.log(res);
         },
         (err: any) => {
           console.log(err);
@@ -137,7 +136,6 @@ export class ItemListComponent implements OnInit {
           }
           this.entities = res.Items;
           this.processItems(this.entities);
-          console.log(res);
         },
         (err: any) => {
           console.log(err);
@@ -156,6 +154,5 @@ export class ItemListComponent implements OnInit {
         }
       })
     });
-    console.log('properties', this.entityHeaders);
   }
 }
