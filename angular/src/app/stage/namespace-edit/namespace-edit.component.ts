@@ -93,8 +93,6 @@ export class NamespaceEditComponent implements OnInit {
       );
     
     inter.subscribe((val) => {
-      console.log("request #", val);
-
       this.namespaceService.info(this.stageEndpoint, this.namespaceCode)
       .subscribe(
         (res: any) => {

@@ -27,7 +27,6 @@ export class StageListComponent implements OnInit {
     this.stageService.list()
     .subscribe(
       (res: any) => {
-        console.log('config', res);
         this.entities = res;        
       },
       (err: any) => {
