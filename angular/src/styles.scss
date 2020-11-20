@@ -4,7 +4,6 @@
 @import "../node_modules/uikit/src/scss/mixins-theme.scss";
 @import "../node_modules/uikit/src/scss/uikit-theme.scss";
 @import "../node_modules/@fortawesome/fontawesome-free/css/all.css";
-@import "../node_modules/@ng-select/ng-select/themes/default.theme.css";
 @import "../node_modules/colors.css/css/colors.css";
 @import "../node_modules/jsoneditor/dist/jsoneditor.min.css";
 
@@ -39,18 +38,6 @@
 .uk-table th.text-no-transform,
 .text-no-transform {
   text-transform: none;
-}
-
-ng-select.ng-select.ng-select-single .ng-select-container,
-ng-select.ng-select .ng-select-container {
-    border-radius: 0;
-    border-color: $global-border;
-    height: $form-height;
-    color: $form-color;
-}
-
-ng-select.ng-select.ng-invalid.ng-touched .ng-select-container {
-	@extend .uk-form-danger;
 }
 
 .mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
