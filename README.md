@@ -1,5 +1,7 @@
 # AWS Data API - UX
 
+![alt AWS Data API UI](https://raw.githubusercontent.com/awslabs/aws-data-api-ux/master/preview.png)
+
 This project contains a simple web interface for [AWS Data API](https://github.com/awslabs/aws-data-api). Data API's give you the ability to create a back end web service to handle core business data, without any coding or servers to manage. This Web UI provides the following functionality:
 
  - Discover and preview available Data API Stages

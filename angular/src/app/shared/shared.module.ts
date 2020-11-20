@@ -4,7 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { NgSelectModule } from '@ng-select/ng-select';
 import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { MatButtonModule } from '@angular/material/button';
@@ -29,8 +28,7 @@ import { NgJsonEditorModule } from 'ang-jsoneditor'
    imports: [
      CommonModule,
      BrowserModule,
-     BrowserAnimationsModule,
-     NgSelectModule,
+    BrowserAnimationsModule,
      MatBadgeModule,
      MatButtonModule,
      MatButtonToggleModule,
@@ -58,7 +56,6 @@ import { NgJsonEditorModule } from 'ang-jsoneditor'
      CommonModule,
      BrowserModule,
      BrowserAnimationsModule,
-     NgSelectModule,
      MatBadgeModule,
      MatButtonModule,
      MatButtonToggleModule,
