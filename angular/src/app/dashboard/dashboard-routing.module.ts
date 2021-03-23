@@ -4,9 +4,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { DashboardDetailComponent } from './dashboard-detail/dashboard-detail.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'dashboard', pathMatch: 'full', canActivate: [SecurityGuard] },
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   { path: 'dashboard',  component: DashboardDetailComponent, canActivate: [SecurityGuard] },
-  { path: '**', redirectTo: 'dashboard', canActivate: [SecurityGuard] }
+  { path: '**', redirectTo: 'dashboard' }
 ];
 
 @NgModule({
