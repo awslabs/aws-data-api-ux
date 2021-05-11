@@ -33,7 +33,8 @@ Configuration of the console consists of only a few steps:
 This website can be run locally on the most of the modern operations systems, including Linux, Windows and MacOS. However, please make sure the following software is installed:
 
  - [Node.js](https://nodejs.org/en/)
- - [NPM](https://www.npmjs.com/), typically installed automatically with Node
+ - [npm](https://www.npmjs.com/), typically installed automatically with Node
+ - [Yarn](https://yarnpkg.com/), a package manager
  - [Angular CLI](https://cli.angular.io/)
 
 In order to launch this application on the local computer please execute the following commands:
@@ -47,7 +48,7 @@ In order to launch this application on the local computer please execute the fol
  2. Download all the required npm modules
 
     ``` shell
-    npm ci
+    yarn install
     ```
 
  3. Build and launch web application
