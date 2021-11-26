@@ -44,3 +44,4 @@ ngrok
 build
 .idea
 *.iml
+.angular
